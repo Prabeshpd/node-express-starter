@@ -27,4 +27,4 @@ jobs:
           prettier_version: 2.7.1
           prettier_options: '--print-width 120 --single-quote true --trailing-comma none --write **/*.{ts,md,yml,js,json}'
           only_changed: true
-          github_token: ${{ secrets.GITHUB_ACTION_TOKEN }}
+          github_token: ${{ secrets.ACTION_TOKEN }}
