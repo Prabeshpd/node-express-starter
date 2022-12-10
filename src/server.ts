@@ -1,9 +1,11 @@
-import helmet from 'helmet';
 import cors from 'cors';
+import helmet from 'helmet';
 import morgan from 'morgan';
 import express from 'express';
-import * as bodyParser from 'body-parser';
 import compression from 'compression';
+import * as bodyParser from 'body-parser';
+
+import { generalRouter } from './routes/rootRouter';
 
 const APP_PORT =
   (process.env.NODE_ENV === 'test' ? process.env.TEST_APP_PORT : process.env.APP_PORT) || process.env.PORT || '3000';
@@ -22,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(generalRouter);
+
 app.listen(app.get('port'), app.get('host'), () => {
-  console.log(`Server started at http://${app.get('host')}:${app.get('port')}/api`);
+  console.log(`Server started at http://${app.get('host')}:${app.get('port')}`);
 });
