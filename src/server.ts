@@ -29,10 +29,12 @@ app.use(generalRouter);
 app.use('/api/v1', appRouter);
 
 app.use(errorHandlerMiddleware.genericErrorHandler);
-app.use(errorHandlerMiddleware.notFoundHandler);
 app.use(errorHandlerMiddleware.emptyBody);
 app.use(errorHandlerMiddleware.bodyParser);
+app.use(errorHandlerMiddleware.notFoundHandler);
 
-app.listen(app.get('port'), app.get('host'), () => {
+export const server = app.listen(app.get('port'), app.get('host'), () => {
   console.log(`Server started at http://${app.get('host')}:${app.get('port')}`);
 });
+
+export default app;
