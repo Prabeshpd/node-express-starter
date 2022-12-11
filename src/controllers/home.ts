@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import httpStatusCode from 'http-status-codes';
+
 import * as homeService from '../services/home';
 
 /**
@@ -7,8 +9,8 @@ import * as homeService from '../services/home';
  * @param {Request} request
  * @param {Response} reply
  */
-export async function getAppInfo(request: Request, reply: Response) {
+export async function getAppInfo(request: Request, response: Response) {
   const appInfo = await homeService.getAppInfo();
 
-  reply.send(appInfo);
+  response.status(httpStatusCode.OK).send(appInfo);
 }
