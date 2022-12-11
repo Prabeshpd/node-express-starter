@@ -8,4 +8,4 @@ plugins:
   - '@semantic-release/github'
   - '@semantic-release/changelog'
   - '@semantic-release/git'
-tagFormat: release@${version}
+tagFormat: node_express@${version}
