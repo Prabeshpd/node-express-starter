@@ -46,7 +46,7 @@ async function authenticate() {
         const error = new ErrorFormatter({
           code: 'UNAUTHORIZED',
           message: 'INVALID TOKEN'
-        });
+        }).construct();
 
         return next(error);
       }
@@ -54,7 +54,7 @@ async function authenticate() {
       const error = new ErrorFormatter({
         code: 'INTERNAL_SERVER_ERROR',
         message: 'Something went wrong'
-      });
+      }).construct();
 
       return next(error);
     }
