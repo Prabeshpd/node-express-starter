@@ -7,7 +7,7 @@ import { UserDetail } from '../../src/models/user';
 import { ERROR_TYPES } from '../../src/constants/enums';
 import { callbackAuthenticate, AuthorizedRequest } from '../../src/middlewares/auth';
 
-describe('resolve config for bootstrapping application', () => {
+describe('should verify the auth middleware with correct arguments', () => {
   let mockExpressRequest: Partial<AuthorizedRequest>;
   let mockExpressResponse: Partial<Response>;
   let mockNextFunction: NextFunction;

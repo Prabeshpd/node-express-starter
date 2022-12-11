@@ -15,10 +15,10 @@ import { ERROR_TYPES, ERROR_CODES } from '../constants/enums';
  * @param {NextFunction} next
  */
 export function notFoundHandler(err: any, req: Request, res: Response, next: NextFunction) {
-  res.status(httpStatusCode.NOT_FOUND).json({
+  return res.status(httpStatusCode.NOT_FOUND).json({
     error: {
-      code: 'NOT_FOUND_ERROR',
-      message: httpStatusCode.getStatusText(httpStatusCode.NOT_FOUND)
+      code: ERROR_TYPES.NOT_FOUND,
+      message: 'Requested resource is not found'
     }
   });
 }
@@ -44,9 +44,7 @@ export function emptyBody(request: Request, response: Response, next: NextFuncti
       message: 'Payload is invalid.'
     }).construct();
 
-    response.status(httpStatusCode.BAD_REQUEST).json(error);
-
-    return;
+    return response.status(httpStatusCode.BAD_REQUEST).json(error);
   }
 
   next();
