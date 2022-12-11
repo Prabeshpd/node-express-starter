@@ -5,7 +5,7 @@ import express from 'express';
 import compression from 'compression';
 import * as bodyParser from 'body-parser';
 
-import { generalRouter } from './routes/rootRouter';
+import { generalRouter, appRouter } from './routes/rootRouter';
 
 const APP_PORT =
   (process.env.NODE_ENV === 'test' ? process.env.TEST_APP_PORT : process.env.APP_PORT) || process.env.PORT || '3000';
@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(generalRouter);
+app.use('/api/v1', appRouter);
 
 app.listen(app.get('port'), app.get('host'), () => {
   console.log(`Server started at http://${app.get('host')}:${app.get('port')}`);
