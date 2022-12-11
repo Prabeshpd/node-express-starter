@@ -3,6 +3,7 @@ import { NextFunction, Request, Response } from 'express';
 import * as jwt from '../utils/jwt';
 import { UserDetail } from '../models/user';
 import ErrorFormatter from '../utils/ErrorHandler';
+import { ERROR_TYPES } from '../constants/enums';
 
 interface AuthorizedRequest extends Request {
   user: UserDetail;
@@ -17,20 +18,19 @@ async function authenticate() {
       const token = request.headers.authorization;
 
       if (!token) {
-        const error = new ErrorFormatter({ code: 'BadRequest', message: 'No authorization header set' })
-          .addInnerError({ code: 'NO_AUTHORIZATION_HEADER' })
-          .construct();
+        const error = new ErrorFormatter({
+          code: ERROR_TYPES.BAD_REQUEST,
+          message: 'No authorization header set'
+        }).construct();
 
         return next(error);
       }
 
       if (!token.includes('Bearer')) {
         const error = new ErrorFormatter({
-          code: 'BadRequest',
+          code: ERROR_TYPES.BAD_REQUEST,
           message: "Authorization header doesn't include a Bearer token"
-        })
-          .addInnerError({ code: 'NO_BEARER_TOKEN' })
-          .construct();
+        }).construct();
 
         return next(error);
       }
@@ -44,7 +44,7 @@ async function authenticate() {
         next();
       } catch (err) {
         const error = new ErrorFormatter({
-          code: 'UNAUTHORIZED',
+          code: ERROR_TYPES.UNAUTHORIZED,
           message: 'INVALID TOKEN'
         }).construct();
 
@@ -52,7 +52,7 @@ async function authenticate() {
       }
     } catch (err) {
       const error = new ErrorFormatter({
-        code: 'INTERNAL_SERVER_ERROR',
+        code: ERROR_TYPES.INTERNAL_SERVER_ERROR,
         message: 'Something went wrong'
       }).construct();
 

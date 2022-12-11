@@ -28,6 +28,7 @@ app.use(cors());
 app.use(generalRouter);
 app.use('/api/v1', appRouter);
 
+app.use(errorHandlerMiddleware.genericErrorHandler);
 app.use(errorHandlerMiddleware.notFoundHandler);
 app.use(errorHandlerMiddleware.emptyBody);
 app.use(errorHandlerMiddleware.bodyParser);

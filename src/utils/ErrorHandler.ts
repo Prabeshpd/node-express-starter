@@ -1,5 +1,7 @@
+import { ERROR_TYPES } from '../constants/enums';
+
 interface ErrorHandler {
-  code: string;
+  code: ERROR_TYPES;
   message?: string;
   innerError?: ErrorHandler[];
   details?: ErrorConstructor[];
@@ -8,7 +10,7 @@ interface ErrorHandler {
 }
 
 interface ErrorConstructor {
-  code: string;
+  code: ERROR_TYPES;
   message: string;
   target?: string;
 }
@@ -39,7 +41,7 @@ interface ErrorConstructor {
  * }
  */
 class ErrorFormatter implements ErrorHandler {
-  public code: string;
+  public code: ERROR_TYPES;
   public message: string;
   private _details: ErrorConstructor[];
   private _innerError: ErrorHandler[];
@@ -60,9 +62,9 @@ class ErrorFormatter implements ErrorHandler {
     const mainError: { [key: string]: any } = { code: this.code, message: this.message };
     let refObj = mainError;
 
-    this._innerError.forEach((ele) => {
+    this._innerError.forEach((error) => {
       refObj = refObj['innerError'] || refObj;
-      refObj['innerError'] = ele;
+      refObj['innerError'] = error;
     });
 
     const errorObject = { error: { ...mainError, details: this._details } };

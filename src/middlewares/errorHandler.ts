@@ -4,6 +4,7 @@ import { Request, Response, NextFunction } from 'express';
 
 import logger from '../utils/logger';
 import ErrorFormatter from '../utils/ErrorHandler';
+import { ERROR_TYPES, ERROR_CODES } from '../constants/enums';
 
 /**
  * Error response middleware for 404 not found. This middleware function should be at the very bottom of the stack.
@@ -39,7 +40,7 @@ export function emptyBody(request: Request, response: Response, next: NextFuncti
     logger.error('JSON: Empty JSON body');
 
     const error = new ErrorFormatter({
-      code: 'INVALID_PAYLOAD',
+      code: ERROR_TYPES.INVALID_PAYLOAD,
       message: 'Payload is invalid.'
     }).construct();
 
@@ -69,4 +70,25 @@ export function bodyParser(err: any, req: Request, res: Response, next: NextFunc
       message: httpStatusCode.getStatusText(err.status)
     }
   });
+}
+
+/**
+ * Generic error response middleware for validation and internal server errors.
+ *
+ * @param {any} err
+ * @param {Request} req
+ * @param {Response} res
+ * @param {NextFunction} next
+ */
+export function genericErrorHandler(err: any, req: Request, res: Response, next: NextFunction) {
+  if (err.stack) {
+    logger.error('Error stack trace: ', err.stack);
+  }
+
+  if (!err.type) {
+    res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json(err);
+  }
+  const statusCode = ERROR_CODES.get(err.type) || httpStatusCode.INTERNAL_SERVER_ERROR;
+
+  res.status(statusCode).json(err);
 }
