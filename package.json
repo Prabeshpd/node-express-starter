@@ -30,11 +30,15 @@
     "morgan": "^1.10.0",
     "mssql": "^9.0.1",
     "pino": "^8.7.0",
+    "semantic-release": "^19.0.5",
     "snakeize": "^0.1.0",
     "tedious": "^15.1.2",
     "type-fest": "^3.3.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.2",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^9.0.1",
     "@types/bcrypt": "^5.0.0",
     "@types/chai": "^4.3.4",
     "@types/compression": "^1.7.2",
