@@ -14,12 +14,11 @@ export async function login(request: Request, response: Response) {
     const payload = request.body;
     const responsePayload = await authService.login(payload);
 
-    return response.status(httpStatusCode.OK).send(responsePayload);
+    return response.status(httpStatusCode.OK).json(responsePayload);
   } catch (err: any) {
-    console.log(err);
     const statusCode = err.code ? err.code : httpStatusCode.INTERNAL_SERVER_ERROR;
 
-    return response.status(statusCode).send(err);
+    return response.status(statusCode).json(err);
   }
 }
 
@@ -34,11 +33,11 @@ export async function refresh(request: Request, response: Response) {
     const payload = request.body;
     const responsePayload = await authService.refresh(payload);
 
-    await response.status(httpStatusCode.OK).send(responsePayload);
+    await response.status(httpStatusCode.OK).json(responsePayload);
   } catch (err: any) {
     console.log(err);
     const statusCode = err.code ? err.code : httpStatusCode.INTERNAL_SERVER_ERROR;
 
-    return response.status(statusCode).send(err);
+    return response.status(statusCode).json(err);
   }
 }

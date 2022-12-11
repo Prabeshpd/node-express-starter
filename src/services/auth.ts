@@ -4,6 +4,7 @@ import * as jwt from '../utils/jwt';
 import * as userService from './user';
 import * as crypt from '../utils/crypt';
 import * as object from '../utils/object';
+import { ERROR_TYPES } from '../constants/enums';
 import ErrorFormatter from '../utils/ErrorHandler';
 import { UserDetail, UserSchema } from '../models/user';
 
@@ -45,7 +46,7 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
   const user: UserSchema = await userService.findUserByEmail(payload.email);
   if (!user) {
     const error = new ErrorFormatter({
-      code: 'BadRequest',
+      code: ERROR_TYPES.BAD_REQUEST,
       message: 'username or password does not match'
     }).construct();
 
@@ -54,7 +55,7 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
 
   if (!user.password) {
     const error = new ErrorFormatter({
-      code: 'BadRequest',
+      code: ERROR_TYPES.BAD_REQUEST,
       message: 'username or password does not match'
     }).construct();
 
@@ -65,7 +66,7 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
 
   if (!passwordMatches) {
     const error = new ErrorFormatter({
-      code: 'BadRequest',
+      code: ERROR_TYPES.BAD_REQUEST,
       message: 'username or password does not match'
     }).construct();
 
@@ -78,7 +79,7 @@ export async function login(payload: LoginPayload): Promise<LoginResponse> {
 
   return {
     code: httpStatus.OK,
-    message: '',
+    message: 'Login is successful.',
     data: {
       user: UserDetail,
       accessToken: accessToken,
@@ -121,7 +122,7 @@ export async function verifyRefreshToken(token: string) {
   } catch (err: any) {
     if (err.name === 'TokenExpiredError') {
       const error = new ErrorFormatter({
-        code: 'Unauthorized',
+        code: ERROR_TYPES.UNAUTHORIZED,
         message: 'Refresh token expired'
       }).construct();
 
@@ -129,7 +130,7 @@ export async function verifyRefreshToken(token: string) {
     }
 
     const error = new ErrorFormatter({
-      code: 'Unauthorized',
+      code: ERROR_TYPES.UNAUTHORIZED,
       message: 'Refresh token expired'
     }).construct();
 

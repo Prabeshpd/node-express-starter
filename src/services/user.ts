@@ -1,6 +1,7 @@
 import httpStatus from 'http-status-codes';
 
 import * as crypt from '../utils/crypt';
+import { ERROR_TYPES } from '../constants/enums';
 import ErrorFormatter from '../utils/ErrorHandler';
 import User, { UserPayload, UserSchema } from '../models/user';
 /**
@@ -13,7 +14,7 @@ export async function findUserByEmail(email: string): Promise<UserSchema> {
   const user = await User.fetchByEmail(email);
   if (!user) {
     const error = new ErrorFormatter({
-      code: 'BadRequest',
+      code: ERROR_TYPES.BAD_REQUEST,
       message: 'username or password does not match'
     }).construct();
 
@@ -22,7 +23,7 @@ export async function findUserByEmail(email: string): Promise<UserSchema> {
 
   if (!user.isActive) {
     const error = new ErrorFormatter({
-      code: 'BadRequest',
+      code: ERROR_TYPES.BAD_REQUEST,
       message: 'User is deactivated'
     }).construct();
 
@@ -41,7 +42,7 @@ export async function addUser(userpayload: UserPayload) {
   } catch (err) {
     console.log(err);
     const error = new ErrorFormatter({
-      code: 'InternalServerError',
+      code: ERROR_TYPES.INTERNAL_SERVER_ERROR,
       message: 'OOPS! Something went wrong'
     }).construct();
 

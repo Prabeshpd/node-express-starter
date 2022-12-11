@@ -12,6 +12,7 @@
     "make": "knex --knexfile=./src/knexfile.ts migrate:make",
     "migrate": "knex --knexfile=./src/knexfile.ts migrate:latest",
     "rollback": "knex --knexfile=./src/knexfile.ts migrate:rollback",
+    "test": "TS_NODE_FILES=true mocha -r ts-node/register test/**/*.spec.ts",
     "prettify": "prettier --write ."
   },
   "dependencies": {
@@ -30,6 +31,7 @@
     "morgan": "^1.10.0",
     "mssql": "^9.0.1",
     "pino": "^8.7.0",
+    "ramda": "^0.28.0",
     "semantic-release": "^19.0.5",
     "snakeize": "^0.1.0",
     "tedious": "^15.1.2",
@@ -48,6 +50,7 @@
     "@types/mocha": "^10.0.1",
     "@types/morgan": "^1.9.3",
     "@types/node": "^18.11.12",
+    "@types/ramda": "^0.28.20",
     "chai": "^4.3.7",
     "mocha": "^10.1.0",
     "nodemon": "^2.0.20",
