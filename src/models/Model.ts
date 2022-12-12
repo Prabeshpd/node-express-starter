@@ -19,7 +19,7 @@ class Model {
    * @returns {void}
    */
   public static bindConnection(connection: Knex): void {
-    logger.debug('Binding database connection to the model (Lazy)');
+    logger.info('Binding database connection to the model (Lazy)');
 
     this.connection = connection;
   }
@@ -51,8 +51,7 @@ class Model {
     /**
      * Note: We need to resolve db connection everytime.
      *
-     * Since, all tenants database connection info is cached in Redis. For ClientModel, resolver()
-     * method uses 'X-App-Id' to identify the database connection of current request client.
+     * Since, all database connection info is cached in Redis.
      */
     if (resolver) {
       return resolver();

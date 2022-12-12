@@ -52,17 +52,17 @@ const config: Configuration = {
     refreshTokenDuration: process.env.AUTH_REFRESH_TOKEN_DURATION || '86400000'
   },
   database: {
-    host: process.env.DB_HOST || '',
+    host: process.env.DB_HOST || 'localhost',
     port: (process.env.DB_PORT && +process.env.DB_PORT) || 1433,
-    user: process.env.DB_USER || '',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_DATABASE || ''
+    user: process.env.DB_USER || 'sa',
+    password: process.env.DB_PASSWORD || 'Admin@1234',
+    database: process.env.DB_DATABASE || 'invenco'
   },
   redis: {
     port: +(process.env.REDIS_PORT || 6379),
-    host: process.env.REDIS_HOST || '127.0.0.1',
-    namespace: process.env.REDIS_NAMESPACE || '',
-    password: process.env.REDIS_PASSWORD || ''
+    host: process.env.REDIS_HOST || 'localhost',
+    namespace: process.env.REDIS_NAMESPACE || 'invenco',
+    password: process.env.REDIS_PASSWORD || 'Admin@1234'
   }
 };
 

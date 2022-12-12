@@ -76,6 +76,18 @@ export function withOnlyAttrs<T>(obj: any, attrs: any[]): T {
 }
 
 /**
+ * Parse JSON encoded string and return object with camelized keys.
+ *
+ * @param {string} encoded
+ * @returns {T}
+ */
+export function fromJson<T>(encoded: string): T {
+  const parsedObject = JSON.parse(encoded);
+
+  return toCamelCase<T>(parsedObject);
+}
+
+/**
  * Get number of keys from given value.
  *
  * @param {any} value
