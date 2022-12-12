@@ -8,6 +8,7 @@ describe('Utils: jwt', () => {
   const userDetail: UserDetail = {
     isActive: true,
     id: 1,
+    name: 'fake random',
     email: 'fake_data@gmail.com',
     createdAt: new Date().toUTCString(),
     updatedAt: new Date().toUTCString()

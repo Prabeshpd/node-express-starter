@@ -20,6 +20,7 @@ describe('should verify the auth middleware with correct arguments', () => {
     mockNextFunction = () => {};
     user = {
       email: 'faker@gmail.com',
+      name: 'fake random',
       createdAt: '2022-10-22',
       isActive: true,
       updatedAt: '2022-10-22',
