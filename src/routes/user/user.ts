@@ -1,10 +1,11 @@
 import { Router } from 'express';
 
-import authenticate from '../../middlewares/auth';
+import userSchema from '../../schemas/user';
+import { schema } from '../../middlewares/validate';
 import * as userController from '../../controllers/userController';
 
 const userRouter = Router();
 
-userRouter.post('/', authenticate, userController.createUser);
+userRouter.post('/', schema(userSchema), userController.createUser);
 
 export default userRouter;

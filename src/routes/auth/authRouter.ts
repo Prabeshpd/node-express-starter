@@ -1,9 +1,13 @@
 import { Router } from 'express';
+
+import loginSchema from '../../schemas/login';
+import refreshSchema from '../../schemas/refresh';
+import { schema } from '../../middlewares/validate';
 import * as authController from '../../controllers/authController';
 
 const authRouter = Router();
 
-authRouter.post('/login', authController.login);
-authRouter.post('/refresh', authController.refresh);
+authRouter.post('/login', schema(loginSchema), authController.login);
+authRouter.post('/refresh', schema(refreshSchema), authController.refresh);
 
 export default authRouter;
