@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.0.0...node_express@1.1.0) (2022-12-12)
+
+
+### Bug Fixes
+
+* add name for user in the model ([bb88c10](https://github.com/Prabeshpd/node-express/commit/bb88c107eec7b789b7db856aa31d1ebc591683d2))
+
+
+### Features
+
+* add employee module to list and create ([eefba9f](https://github.com/Prabeshpd/node-express/commit/eefba9fbe8ac126b53770c1dca8c3de9a75f6143))
+* add model for employee ([d2175b8](https://github.com/Prabeshpd/node-express/commit/d2175b8ec95b6033f3213baacdecf282aad865b1))
+* add pagination util to maintain pagination ([cfd1b28](https://github.com/Prabeshpd/node-express/commit/cfd1b28a005b03336f7962723121401e4559fd68))
+
 # 1.0.0 (2022-12-11)
 
 
