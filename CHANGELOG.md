@@ -1,3 +1,22 @@
+# [1.4.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.3.0...node_express@1.4.0) (2022-12-12)
+
+
+### Bug Fixes
+
+* change the is_active default value to true ([15aead1](https://github.com/Prabeshpd/node-express/commit/15aead1bf60bdc5cb05657f64c8b6e199152cc99))
+* fix the creation of user to return appropriate date ([9beaa99](https://github.com/Prabeshpd/node-express/commit/9beaa9930f36181fe0f7073e1ceb4575d7a010c3))
+* fix the joi schema type ([81beeba](https://github.com/Prabeshpd/node-express/commit/81beeba77cb2657b5747ede3db1d454ae5f39e0f))
+* skip test in CI ([9c4d599](https://github.com/Prabeshpd/node-express/commit/9c4d5997d2ec9fad241824b3b9c3e2b327a91827))
+* take the env variables as the environment ([d6f5c2a](https://github.com/Prabeshpd/node-express/commit/d6f5c2ad1023ae8e72a2a7dd2144071ac1570ce7))
+
+
+### Features
+
+* add test for the employee ([7d8da5c](https://github.com/Prabeshpd/node-express/commit/7d8da5c67ce61a1c1df8f76948fb89e4bc6b0ef7))
+* add the api test for auth ([d51561d](https://github.com/Prabeshpd/node-express/commit/d51561da4347f9d8fd071544568fc2ac4eafbfbe))
+* add the api test for user ([b9e94e9](https://github.com/Prabeshpd/node-express/commit/b9e94e91b54826172278cdcc976217d15c1a5c8a))
+* separate the environment for test and app ([93163f9](https://github.com/Prabeshpd/node-express/commit/93163f9fce93725dff1c0135907f11a4cf76bbc9))
+
 # [1.3.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.2.0...node_express@1.3.0) (2022-12-12)
 
 
