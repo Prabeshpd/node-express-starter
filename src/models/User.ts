@@ -1,5 +1,6 @@
 import BaseModel from './Model';
 import { CamelCaseKeys } from '../types/utils';
+import { listWithoutAttrs } from '../utils/object';
 
 export interface UserModel {
   id: number;
@@ -19,7 +20,9 @@ class User extends BaseModel {
   public static table = 'users';
 
   public static async insertData(data: UserPayload | UserPayload[]) {
-    return this.insert<UserPayload | UserPayload[]>(data);
+    const user = await this.insert<UserPayload | UserPayload[]>(data);
+
+    return listWithoutAttrs(user, ['password']);
   }
 
   public static async fetchByEmail(email: string) {

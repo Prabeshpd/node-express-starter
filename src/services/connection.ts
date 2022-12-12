@@ -7,6 +7,8 @@ import BaseModel from '../models/Model';
 import * as redis from '../utils/redis';
 import { fromJson } from '../utils/object';
 
+const env = config.env;
+
 export async function initRedisConnection() {
   try {
     await redis.init();
@@ -59,7 +61,7 @@ export interface DatabaseConfig {
 export function createConnection(): DatabaseConfig {
   const dbConfig = {
     client: 'mssql',
-    connection: { ...config.database }
+    connection: { ...config.database[env] }
   };
 
   return dbConfig;

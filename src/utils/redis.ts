@@ -7,6 +7,7 @@ export const REVOKED = 'REVOKED';
 export const SESSION_PREFIX = 'session_id_';
 
 let redis: Redis;
+const env = config.env;
 
 /**
  * Initialize redis.
@@ -14,7 +15,7 @@ let redis: Redis;
  * @returns {Promise<string>}
  */
 export function init(): Promise<string> {
-  const redisConfig = config.redis;
+  const redisConfig = config.redis[env];
 
   // Check for namespace - it is required.
   if (!redisConfig.namespace) {
@@ -113,7 +114,7 @@ export async function get(key: string): Promise<string | null> {
  * @returns {string}
  */
 function withNamespace(key: string): string {
-  const { namespace } = config.redis;
+  const { namespace } = config.redis[env];
 
   return `${namespace}:${key}`;
 }
@@ -129,7 +130,7 @@ export async function del(pattern: string): Promise<any> {
     throw new Error('Pattern argument cannot be empty.');
   }
 
-  const { namespace } = config.redis;
+  const { namespace } = config.redis[env];
   const keys = await redis.keys(`${namespace}:${pattern}`);
   const pipeline = redis.pipeline();
 
