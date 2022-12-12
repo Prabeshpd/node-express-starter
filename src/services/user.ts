@@ -11,7 +11,8 @@ import User, { UserPayload, UserSchema } from '../models/User';
  * @returns {Promise<UserSchema>}
  */
 export async function findUserByEmail(email: string): Promise<UserSchema> {
-  const user = await User.fetchByEmail(email);
+  const [user] = await User.fetchByEmail(email);
+
   if (!user) {
     const error = new ErrorFormatter({
       code: ERROR_TYPES.BAD_REQUEST,

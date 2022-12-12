@@ -1,5 +1,4 @@
 import BaseModel from './Model';
-import { toCamelCase } from '../utils/object';
 import { CamelCaseKeys } from '../types/utils';
 
 export interface UserModel {
@@ -14,7 +13,7 @@ export interface UserModel {
 
 export type UserSchema = CamelCaseKeys<UserModel>;
 export type UserDetail = Omit<UserSchema, 'password'>;
-export type UserPayload = Omit<UserModel, 'id' | 'created_at' | 'updated_at' | 'password'>;
+export type UserPayload = Omit<UserModel, 'id' | 'created_at' | 'updated_at'>;
 
 class User extends BaseModel {
   public static table = 'users';
@@ -24,7 +23,9 @@ class User extends BaseModel {
   }
 
   public static async fetchByEmail(email: string) {
-    return this.buildQuery((qb) => qb.select('*').from('users').where('is_active', 1).andWhere('email', email));
+    return this.buildQuery<UserSchema>((qb) =>
+      qb.select('*').from('users').where('is_active', 1).andWhere('email', email)
+    );
   }
 }
 
