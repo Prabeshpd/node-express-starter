@@ -1,3 +1,21 @@
+# [1.3.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.2.0...node_express@1.3.0) (2022-12-12)
+
+
+### Bug Fixes
+
+* add test for validator ([aa3e4d0](https://github.com/Prabeshpd/node-express/commit/aa3e4d0b4a48b3a61aac03d011dc9c5ae91e3fc4))
+* correct test to close the connection ([446c687](https://github.com/Prabeshpd/node-express/commit/446c68738aeebac39856f0f6d2008676067a72af))
+* fix user model return type ([9f9a70b](https://github.com/Prabeshpd/node-express/commit/9f9a70b68e5b1ee09fa0608d403197c4bb3cb03d))
+* remove unwanted varaibles ([4f9786c](https://github.com/Prabeshpd/node-express/commit/4f9786ce9603bec5c907f0450f309e18391307a0))
+* update import of chai-as-promised ([0a1a313](https://github.com/Prabeshpd/node-express/commit/0a1a31323fefc5463b2701fd3f7f527980470fb7))
+* update logging details ([91cdcc3](https://github.com/Prabeshpd/node-express/commit/91cdcc31b57cb5aa64c1c5e97c2e9629311ffa27))
+
+
+### Features
+
+* add connection along with cache to redis database ([ac92422](https://github.com/Prabeshpd/node-express/commit/ac924221667b67e85c4abf07e73b012c3d2778a1))
+* make a base class for model and its function ([db4f496](https://github.com/Prabeshpd/node-express/commit/db4f49647bc113dba862195ca4704059d58e8641))
+
 # [1.2.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.1.0...node_express@1.2.0) (2022-12-12)
 
 
