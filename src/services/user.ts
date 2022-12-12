@@ -3,7 +3,7 @@ import httpStatus from 'http-status-codes';
 import * as crypt from '../utils/crypt';
 import { ERROR_TYPES } from '../constants/enums';
 import ErrorFormatter from '../utils/ErrorHandler';
-import User, { UserPayload, UserSchema } from '../models/user';
+import User, { UserPayload, UserSchema } from '../models/User';
 /**
  * Find user by email.
  *
