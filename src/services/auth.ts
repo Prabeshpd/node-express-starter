@@ -6,7 +6,7 @@ import * as crypt from '../utils/crypt';
 import * as object from '../utils/object';
 import { ERROR_TYPES } from '../constants/enums';
 import ErrorFormatter from '../utils/ErrorHandler';
-import { UserDetail, UserSchema } from '../models/user';
+import { UserDetail, UserSchema } from '../models/User';
 
 export interface LoginResponse {
   code: number;

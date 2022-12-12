@@ -2,7 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 
 import { decode, generateAccessToken, generateRefreshToken } from '../../src/utils/jwt';
-import { UserDetail } from '../../src/models/user';
+import { UserDetail } from '../../src/models/User';
 
 describe('Utils: jwt', () => {
   const userDetail: UserDetail = {

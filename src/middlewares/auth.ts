@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import * as jwt from '../utils/jwt';
-import { UserDetail } from '../models/user';
+import { UserDetail } from '../models/User';
 import ErrorFormatter from '../utils/ErrorHandler';
 import { ERROR_TYPES } from '../constants/enums';
 
@@ -9,11 +9,8 @@ export interface AuthorizedRequest extends Request {
   user: UserDetail;
 }
 
-async function authenticate() {
-  return callbackAuthenticate;
-}
-
-export async function callbackAuthenticate(request: AuthorizedRequest, response: Response, next: NextFunction) {
+async function authenticate(request: Request, response: Response, next: NextFunction) {
+  const authorizedRequest = request as AuthorizedRequest;
   try {
     const { accessTokenSecret } = process.env;
 
@@ -42,7 +39,7 @@ export async function callbackAuthenticate(request: AuthorizedRequest, response:
 
     try {
       const decodedResult = (await jwt.verifyToken(bearerToken, secret)) as UserDetail;
-      request.user = decodedResult;
+      authorizedRequest.user = decodedResult;
 
       next();
     } catch (err) {

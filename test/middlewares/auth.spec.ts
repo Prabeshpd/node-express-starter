@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { Response, NextFunction } from 'express';
 
 import * as jwt from '../../src/utils/jwt';
-import { UserDetail } from '../../src/models/user';
+import { UserDetail } from '../../src/models/User';
 import { ERROR_TYPES } from '../../src/constants/enums';
-import { callbackAuthenticate, AuthorizedRequest } from '../../src/middlewares/auth';
+import authenticate, { AuthorizedRequest } from '../../src/middlewares/auth';
 
 describe('should verify the auth middleware with correct arguments', () => {
   let mockExpressRequest: Partial<AuthorizedRequest>;
@@ -38,7 +38,7 @@ describe('should verify the auth middleware with correct arguments', () => {
       };
     });
 
-    callbackAuthenticate(
+    authenticate(
       mockExpressRequest as AuthorizedRequest,
       mockExpressResponse as Response,
       mockNextFunction as NextFunction
@@ -64,7 +64,7 @@ describe('should verify the auth middleware with correct arguments', () => {
       };
     });
 
-    callbackAuthenticate(
+    authenticate(
       mockExpressRequest as AuthorizedRequest,
       mockExpressResponse as Response,
       mockNextFunction as NextFunction
@@ -90,7 +90,7 @@ describe('should verify the auth middleware with correct arguments', () => {
       };
     });
 
-    callbackAuthenticate(
+    authenticate(
       mockExpressRequest as AuthorizedRequest,
       mockExpressResponse as Response,
       mockNextFunction as NextFunction
@@ -118,7 +118,7 @@ describe('should verify the auth middleware with correct arguments', () => {
 
     process.env.accessTokenSecret = 'ENTER_ACCESS_TOKEN_SALT_HERE';
 
-    callbackAuthenticate(
+    authenticate(
       mockExpressRequest as AuthorizedRequest,
       mockExpressResponse as Response,
       mockNextFunction as NextFunction

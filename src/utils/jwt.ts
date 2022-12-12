@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 
 import config from '../config';
 import * as object from '../utils/object';
-import { UserDetail } from '../models/user';
+import { UserDetail } from '../models/User';
 
 export interface AccessTokens {
   accessToken: string;
