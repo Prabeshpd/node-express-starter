@@ -55,6 +55,10 @@ export function init(): Promise<string> {
   });
 }
 
+export function disconnect() {
+  redis.disconnect();
+}
+
 /**
  * Create session key name.
  *

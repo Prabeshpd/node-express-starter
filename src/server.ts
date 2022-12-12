@@ -5,6 +5,7 @@ import express from 'express';
 import compression from 'compression';
 import * as bodyParser from 'body-parser';
 
+import { disconnect } from './utils/redis';
 import { generalRouter, appRouter } from './routes/rootRouter';
 import * as errorHandlerMiddleware from './middlewares/errorHandler';
 import { initRedisConnection, bindAppConnection } from './services/connection';
@@ -14,8 +15,6 @@ const APP_PORT =
 const APP_HOST = process.env.APP_HOST || '0.0.0.0';
 
 const app = express();
-app.use(initRedisConnection);
-app.use(bindAppConnection);
 
 app.set('port', APP_PORT);
 app.set('host', APP_HOST);
@@ -40,9 +39,13 @@ export const server = app.listen(app.get('port'), app.get('host'), () => {
   console.log(`Server started at http://${app.get('host')}:${app.get('port')}`);
 });
 
-server.on('listening', function () {
-  initRedisConnection();
-  bindAppConnection();
+server.on('listening', async function () {
+  await initRedisConnection();
+  await bindAppConnection();
+});
+
+server.on('close', function () {
+  disconnect();
 });
 
 export default app;
