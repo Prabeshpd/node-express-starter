@@ -84,8 +84,11 @@ export function genericErrorHandler(err: any, req: Request, res: Response, next:
   }
 
   if (!err.type) {
-    res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json(err);
+    logger.error(err);
+    return res.status(httpStatusCode.INTERNAL_SERVER_ERROR).json(err);
   }
+
+  logger.error(err);
   const statusCode = ERROR_CODES.get(err.type) || httpStatusCode.INTERNAL_SERVER_ERROR;
 
   res.status(statusCode).json(err);
