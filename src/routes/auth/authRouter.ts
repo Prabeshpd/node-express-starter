@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import loginSchema from '../../schemas/login';
-import refreshSchema from '../../schemas/referesh';
+import refreshSchema from '../../schemas/refresh';
 import { schema } from '../../middlewares/validate';
 import * as authController from '../../controllers/authController';
 
