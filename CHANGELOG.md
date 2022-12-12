@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.1.0...node_express@1.2.0) (2022-12-12)
+
+
+### Bug Fixes
+
+* correct the path for refresh ([328b84f](https://github.com/Prabeshpd/node-express/commit/328b84f0cefee334be628fa7569b566838b16c8b))
+
+
+### Features
+
+* add validation for employee and user ([08db9df](https://github.com/Prabeshpd/node-express/commit/08db9df3d7fc8d66bf037171d24a682759a07fc3))
+* add validation for login ([b4dcf1c](https://github.com/Prabeshpd/node-express/commit/b4dcf1c33e59849ff4c121a0bfe6a937f59493ad))
+
 # [1.1.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.0.0...node_express@1.1.0) (2022-12-12)
 
 
