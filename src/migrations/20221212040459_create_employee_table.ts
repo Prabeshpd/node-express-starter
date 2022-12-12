@@ -5,7 +5,7 @@ export async function up(knex: Knex): Promise<void> {
     table.increments('id').primary();
     table.string('name', 255).notNullable();
     table.string('email', 255).notNullable().unique();
-    table.boolean('is_active').notNullable().defaultTo(false);
+    table.boolean('is_active').notNullable().defaultTo(true);
     table.date('hire_date').nullable();
     table.integer('user_id').references('id').inTable('users').notNullable();
     table.timestamp('created_at').defaultTo(knex.fn.now());
