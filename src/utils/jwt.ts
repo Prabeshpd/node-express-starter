@@ -13,7 +13,6 @@ export interface AccessTokens {
  * Generate tokens.
  *
  * @param {UserDetail} data
- * @param {number} sessionId
  * @returns {AccessTokens}
  */
 export function generateTokens(data: UserDetail): AccessTokens {
@@ -27,7 +26,6 @@ export function generateTokens(data: UserDetail): AccessTokens {
  * Generate Access Token for the provided user detail.
  *
  * @param {UserDetail} data
- * @param {number} sessionId
  * @param {string} [extraSalt='']
  * @returns {string}
  */
