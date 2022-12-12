@@ -1,5 +1,7 @@
 import * as Joi from 'joi';
 
-export default {
+const refresh = Joi.object().keys({
   refreshToken: Joi.string().required()
-};
+});
+
+export default refresh;
