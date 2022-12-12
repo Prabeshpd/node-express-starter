@@ -16,8 +16,6 @@ export async function createUser(request: Request, response: Response) {
 
     await response.status(httpStatusCode.OK).send(data);
   } catch (err: any) {
-    console.log(err);
-
     const statusCode = err.code ? err.code : httpStatusCode.INTERNAL_SERVER_ERROR;
     response.status(statusCode).send(err);
   }
