@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
+import config from '../config';
 import * as jwt from '../utils/jwt';
 import { UserDetail } from '../models/User';
-import ErrorFormatter from '../utils/ErrorHandler';
 import { ERROR_TYPES } from '../constants/enums';
+import ErrorFormatter from '../utils/ErrorHandler';
 
 export interface AuthorizedRequest extends Request {
   user: UserDetail;
@@ -12,7 +13,7 @@ export interface AuthorizedRequest extends Request {
 async function authenticate(request: Request, response: Response, next: NextFunction) {
   const authorizedRequest = request as AuthorizedRequest;
   try {
-    const { accessTokenSecret } = process.env;
+    const { accessTokenSecret } = config.auth;
 
     const secret = `${accessTokenSecret}`;
     const token = request.headers.authorization;

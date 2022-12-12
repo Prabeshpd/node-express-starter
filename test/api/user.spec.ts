@@ -4,13 +4,13 @@ import request from 'supertest';
 import app, { server } from '../../src/server';
 import { getTestDatabaseConnection } from '../../src/utils/testConnection';
 
-describe('User login test', () => {
+describe('User Creation test', () => {
   let connection: any;
   before(async () => {
     connection = getTestDatabaseConnection();
   });
 
-  it('should return token with correct credentials', (done) => {
+  it('should create the user', (done) => {
     request(app)
       .post('/api/v1/users')
       .send({ email: 'random_jude@gmail.com', password: 'random@123', name: 'random jude' })
