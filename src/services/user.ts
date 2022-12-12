@@ -35,19 +35,11 @@ export async function findUserByEmail(email: string): Promise<UserSchema> {
 }
 
 export async function addUser(userpayload: UserPayload) {
-  try {
-    const password = userpayload.password;
-    const cryptedPassword = await crypt.hash(password);
-    const payload = { ...userpayload, password: cryptedPassword, is_active: true };
+  const password = userpayload.password;
+  const cryptedPassword = await crypt.hash(password);
+  const payload = { ...userpayload, password: cryptedPassword, is_active: true };
 
-    await User.insertData(payload);
-  } catch (err) {
-    console.log(err);
-    const error = new ErrorFormatter({
-      code: ERROR_TYPES.INTERNAL_SERVER_ERROR,
-      message: 'OOPS! Something went wrong'
-    }).construct();
+  const [user] = await User.insertData(payload);
 
-    throw { statusCode: httpStatus.INTERNAL_SERVER_ERROR, error };
-  }
+  return user;
 }
