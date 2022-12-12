@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
 
+type ENV = 'local' | 'test';
 interface Configuration {
-  env: string;
+  env: ENV;
   port: string | number;
   secret: string;
   cors: {
@@ -18,17 +19,34 @@ interface Configuration {
     accessTokenSecret: string;
   };
   database: {
-    host: string;
-    port: number;
-    user: string;
-    password: string;
-    database: string;
+    test: {
+      host: string;
+      port: number;
+      user: string;
+      password: string;
+      database: string;
+    };
+    local: {
+      host: string;
+      port: number;
+      user: string;
+      password: string;
+      database: string;
+    };
   };
   redis: {
-    port: number;
-    host: string;
-    namespace: string;
-    password: string;
+    test: {
+      port: number;
+      host: string;
+      namespace: string;
+      password: string;
+    };
+    local: {
+      port: number;
+      host: string;
+      namespace: string;
+      password: string;
+    };
   };
 }
 
@@ -36,7 +54,7 @@ dotenv.config();
 
 const config: Configuration = {
   secret: process.env.SECRET_KEY || '',
-  env: process.env.ENV || 'local',
+  env: process.env.ENV == 'test' ? 'test' : 'local',
   port: process.env.EXPRESS_PORT || '3000',
   cors: {
     whitelist: ['/^localhost$/']
@@ -52,17 +70,34 @@ const config: Configuration = {
     refreshTokenDuration: process.env.AUTH_REFRESH_TOKEN_DURATION || '86400000'
   },
   database: {
-    host: process.env.DB_HOST || 'localhost',
-    port: (process.env.DB_PORT && +process.env.DB_PORT) || 1433,
-    user: process.env.DB_USER || 'sa',
-    password: process.env.DB_PASSWORD || 'Admin@1234',
-    database: process.env.DB_DATABASE || 'invenco'
+    test: {
+      host: process.env.DB_HOST || 'localhost',
+      port: (process.env.DB_PORT && +process.env.DB_PORT) || 1433,
+      user: process.env.DB_USER || 'sa',
+      password: process.env.DB_PASSWORD || 'Admin@1234',
+      database: process.env.DB_DATABASE || 'invenco'
+    },
+    local: {
+      host: process.env.DB_HOST || 'localhost',
+      port: (process.env.DB_PORT && +process.env.DB_PORT) || 1433,
+      user: process.env.DB_USER || 'sa',
+      password: process.env.DB_PASSWORD || 'Admin@1234',
+      database: process.env.DB_DATABASE || 'invenco'
+    }
   },
   redis: {
-    port: +(process.env.REDIS_PORT || 6379),
-    host: process.env.REDIS_HOST || 'localhost',
-    namespace: process.env.REDIS_NAMESPACE || 'invenco',
-    password: process.env.REDIS_PASSWORD || 'Admin@1234'
+    test: {
+      port: +(process.env.REDIS_PORT || 6379),
+      host: process.env.REDIS_HOST || 'localhost',
+      namespace: process.env.REDIS_NAMESPACE || 'invenco',
+      password: process.env.REDIS_PASSWORD || 'Admin@1234'
+    },
+    local: {
+      port: +(process.env.REDIS_PORT || 6379),
+      host: process.env.REDIS_HOST || 'localhost',
+      namespace: process.env.REDIS_NAMESPACE || 'invenco',
+      password: process.env.REDIS_PASSWORD || 'Admin@1234'
+    }
   }
 };
 
