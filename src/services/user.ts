@@ -39,6 +39,7 @@ export async function addUser(userpayload: UserPayload) {
     const password = userpayload.password;
     const cryptedPassword = await crypt.hash(password);
     const payload = { ...userpayload, password: cryptedPassword, is_active: true };
+
     await User.insertData(payload);
   } catch (err) {
     console.log(err);

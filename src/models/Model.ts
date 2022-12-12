@@ -154,7 +154,7 @@ class BaseModel extends Model {
   }
 }
 
-logger.info('Initializing base models');
-logger.info('Bind connection resolver for the LaudioModel');
+logger.info('Initializing base model');
+logger.info('Bind connection resolver for the base Model');
 
 export default BaseModel;
