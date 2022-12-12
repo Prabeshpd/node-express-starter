@@ -1,7 +1,7 @@
 import 'mocha';
 import * as Joi from 'joi';
 import { expect, use } from 'chai';
-import * as chaiAsPromised from 'chai-as-promised';
+import chaiAsPromised from 'chai-as-promised';
 
 import { validate } from '../../src/utils/validator';
 
