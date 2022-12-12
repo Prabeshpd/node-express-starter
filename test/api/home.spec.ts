@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import app, { server } from '../../src/server';
 import request from 'supertest';
+
+import app, { server } from '../../src/server';
 
 describe('Base API Test', () => {
   it('should return API version and title for the app', (done) => {

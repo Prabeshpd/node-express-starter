@@ -1,6 +1,6 @@
-import { Knex, knex } from 'knex';
+import { Knex } from 'knex';
 
-import { toCamelCase } from '../utils/object';
+import BaseModel from './Model';
 import { CamelCaseKeys } from '../types/utils';
 import { PaginationQueryParams } from '../utils/pagination';
 
@@ -16,22 +16,9 @@ export interface EmployeeModel {
 }
 
 export type EmployeeSchema = CamelCaseKeys<EmployeeModel>;
-export type employeePayload = Omit<EmployeeSchema, 'id' | 'createdAt' | 'updatedAt'>;
+export type employeePayload = Omit<EmployeeModel, 'id' | 'created_at' | 'updated_at'>;
 
-const dbConfig = {
-  client: 'mssql',
-  connection: {
-    server: 'localhost',
-    port: 1433,
-    user: 'sa',
-    database: 'invenco',
-    password: 'Admin@1234'
-  }
-};
-
-const db: Knex = knex(dbConfig);
-
-class Employee {
+class Employee extends BaseModel {
   public static table = 'employees';
 
   /**
@@ -41,13 +28,11 @@ class Employee {
    * @returns {Promise<number>}
    */
   public static async count(user_id: number): Promise<number> {
-    const [count] = await db
-      .count('id as count')
-      .from(this.table)
-      .where('is_active', true)
-      .and.where('user_id', user_id);
+    const [{ count }] = await this.buildQuery<{ count: number }>((qb: Knex) =>
+      qb.count('id as count').from(this.table).where('is_active', true).and.where('user_id', user_id)
+    );
 
-    return +count;
+    return count;
   }
 
   /**
@@ -60,13 +45,18 @@ class Employee {
   public static async fetch(user_id: number, paginationParams: PaginationQueryParams) {
     const { limit, offset } = paginationParams;
 
-    return db.select().from(this.table).limit(limit).offset(offset).where('is_active', 1).and.where('user_id', user_id);
+    return this.buildQuery<EmployeeSchema>((qb) =>
+      qb.select().from(this.table).limit(limit).offset(offset).where('is_active', 1).and.where('user_id', user_id)
+    );
   }
 
-  public static async insertData(data: employeePayload): Promise<EmployeeSchema[]> {
-    const result = await db.insert(data).into(this.table).returning('*');
-
-    return toCamelCase(result);
+  /**
+   * Creates Employee for a user.
+   * @param {employeePayload | employeePayload[]} data
+   * @returns
+   */
+  public static async insertData(data: employeePayload | employeePayload[]) {
+    return this.insert<employeePayload | employeePayload[]>(data);
   }
 }
 

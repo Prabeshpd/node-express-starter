@@ -11,7 +11,8 @@ import User, { UserPayload, UserSchema } from '../models/User';
  * @returns {Promise<UserSchema>}
  */
 export async function findUserByEmail(email: string): Promise<UserSchema> {
-  const user = await User.fetchByEmail(email);
+  const [user] = await User.fetchByEmail(email);
+
   if (!user) {
     const error = new ErrorFormatter({
       code: ERROR_TYPES.BAD_REQUEST,
@@ -38,6 +39,7 @@ export async function addUser(userpayload: UserPayload) {
     const password = userpayload.password;
     const cryptedPassword = await crypt.hash(password);
     const payload = { ...userpayload, password: cryptedPassword, is_active: true };
+
     await User.insertData(payload);
   } catch (err) {
     console.log(err);
