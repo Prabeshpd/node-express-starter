@@ -76,7 +76,9 @@ Tools used for testing are
 
 ## Manage ENV Variable
 
-To manage env variable we can have >***vault*** to store our database credentials and dynamic secrets that is needed to run the environment. We can have a vault agent to rotate our secret of vault and access the credentials from the vault api interface.
+To manage env variable we can have 
+- ***vault***
+to store our database credentials and dynamic secrets that is needed to run the environment. We can have a vault agent to rotate our secret of vault and access the credentials from the vault api interface.
 Or we can have a agent that populates our env file whenever a change is encountered in vault credentials.
 
 ---
