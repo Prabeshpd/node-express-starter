@@ -40,6 +40,15 @@ export async function bindAppConnection() {
   }
 }
 
+export async function destroyConnection() {
+  const connection = await getPersistedConnections();
+
+  if (!connection) return;
+
+  const knexConnection = db.createInstance(connection);
+  await knexConnection.destroy();
+}
+
 const CONN_PERSISTENCE_KEY = 'database_connections';
 
 export interface DatabaseConfig {

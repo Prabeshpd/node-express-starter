@@ -8,7 +8,7 @@ import * as bodyParser from 'body-parser';
 import { disconnect } from './utils/redis';
 import { generalRouter, appRouter } from './routes/rootRouter';
 import * as errorHandlerMiddleware from './middlewares/errorHandler';
-import { initRedisConnection, bindAppConnection } from './services/connection';
+import { initRedisConnection, bindAppConnection, destroyConnection } from './services/connection';
 
 const APP_PORT =
   (process.env.NODE_ENV === 'test' ? process.env.TEST_APP_PORT : process.env.APP_PORT) || process.env.PORT || '3000';
@@ -44,8 +44,9 @@ server.on('listening', async function () {
   await bindAppConnection();
 });
 
-server.on('close', function () {
+server.on('close', async function () {
   disconnect();
+  await destroyConnection();
 });
 
 export default app;
