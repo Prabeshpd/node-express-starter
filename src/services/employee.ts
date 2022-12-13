@@ -11,7 +11,7 @@ import { extractPaginationParams, constructPaginationResult, PaginationParams } 
  */
 export async function fetchEmployee(userId: number, params: PaginationParams) {
   const log = childLogger({ module: 'services/employee' });
-  const href = '/employee';
+  const href = '/api/v1/employees';
 
   try {
     const { currentPage = 1 } = params;
@@ -28,7 +28,7 @@ export async function fetchEmployee(userId: number, params: PaginationParams) {
       href
     });
 
-    return { recommendations: employees, metadata: paginationResult };
+    return { data: employees, metadata: paginationResult };
   } catch (err: any) {
     log.error(err);
 

@@ -35,6 +35,20 @@ describe('Employee api test', () => {
         });
     });
 
+    it('should fetch the employee', (done) => {
+      request(app)
+        .get('/api/v1/employees')
+        .set('Accept', 'application/json')
+        .set('Authorization', token)
+        .end((err, res) => {
+          expect(res.statusCode).to.be.equal(200);
+          expect(res.body.data).to.have.length(1);
+          expect(res.body.metadata.totalCount).to.be.equal(1);
+          expect(res.body.data[0].name).to.be.equal('random jude');
+          done();
+        });
+    });
+
     after(async () => {
       await connection.delete().from('employees');
       await connection.delete().from('users');
