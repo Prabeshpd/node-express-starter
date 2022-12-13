@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/Prabeshpd/node-express/compare/node_express@1.5.0...node_express@1.5.1) (2022-12-13)
+
+
+### Bug Fixes
+
+* update the env ([7ac112c](https://github.com/Prabeshpd/node-express/commit/7ac112cde282e29a3aa218ea5d2d546f8144e7f3))
+
 # [1.5.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.4.0...node_express@1.5.0) (2022-12-13)
 
 
