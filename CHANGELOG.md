@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.4.0...node_express@1.5.0) (2022-12-13)
+
+
+### Features
+
+* add test for employee api ([d11a07b](https://github.com/Prabeshpd/node-express/commit/d11a07b27e4317b5693c01165e93285dc4b91591))
+
 # [1.4.0](https://github.com/Prabeshpd/node-express/compare/node_express@1.3.0...node_express@1.4.0) (2022-12-12)
 
 
