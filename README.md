@@ -1,4 +1,4 @@
-# node-express
+# node-express-starter-guide
 
 # Setup
 
